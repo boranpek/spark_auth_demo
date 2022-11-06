@@ -1,5 +1,5 @@
 class AppTexts {
-  static const registerScreenHeader = "Let's Begin";
+  static const registerScreenHeader = "Let's begin";
   static const loginScreenHeader = 'Log in';
   static const forgotPassScreenHeader = 'Forgot Password';
   static const nameHintText = 'Name*';
@@ -10,7 +10,7 @@ class AppTexts {
   static const birthHintText = 'Year of birth';
   static const privacyPolicyText =
       'I have read the Terms of Use and Privacy Policy and I want to proceed.';
-  static const alreadyHaveProfile = 'Already have a profile?';
+  static const alreadyHaveProfile = 'Already have a profile? ';
   static const saveButton = 'Save';
   static const loginButton = 'Login';
   static const continueButton = 'Continue';

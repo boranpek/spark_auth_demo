@@ -36,42 +36,45 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      cursorColor: context.appColors.primaryColor,
-      cursorWidth: 1,
-      controller: widget.controller,
-      focusNode: widget.focusNode,
-      textAlignVertical: TextAlignVertical.center,
-      obscureText: isObscureChanged,
-      autocorrect: false,
-      style: context.textTheme.bodyText1,
-      textCapitalization: widget.isCapitalized
-          ? TextCapitalization.words
-          : TextCapitalization.none,
-      decoration: InputDecoration(
-        contentPadding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-        hintText: widget.title,
-        hintStyle: context.textTheme.bodyText1,
-        filled: true,
-        fillColor: context.appColors.white,
-        border: buildOutlineBorder(),
-        enabledBorder: buildOutlineBorder(),
-        focusedBorder:
-            buildOutlineBorder(borderColor: context.appColors.primaryColor),
-        suffixIcon: (widget.isObscure! &&
-                (widget.controller?.text.isNotEmpty ?? false))
-            ? GestureDetector(
-                onTap: () {
-                  setState(() {
-                    isObscureChanged = !isObscureChanged;
-                  });
-                },
-                child: Icon(
-                  isObscureChanged ? Icons.visibility : Icons.visibility_off,
-                  color: context.appColors.textColor,
-                ),
-              )
-            : null,
+    return SizedBox(
+      height: 42,
+      child: TextField(
+        cursorColor: context.appColors.primaryColor,
+        cursorWidth: 1,
+        controller: widget.controller,
+        focusNode: widget.focusNode,
+        textAlignVertical: TextAlignVertical.center,
+        obscureText: isObscureChanged,
+        autocorrect: false,
+        style: context.textTheme.bodyText1,
+        textCapitalization: widget.isCapitalized
+            ? TextCapitalization.words
+            : TextCapitalization.none,
+        decoration: InputDecoration(
+          contentPadding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+          hintText: widget.title,
+          hintStyle: context.textTheme.bodyText1,
+          filled: true,
+          fillColor: context.appColors.white,
+          border: buildOutlineBorder(),
+          enabledBorder: buildOutlineBorder(),
+          focusedBorder:
+              buildOutlineBorder(borderColor: context.appColors.primaryColor),
+          suffixIcon: (widget.isObscure! &&
+                  (widget.controller?.text.isNotEmpty ?? false))
+              ? GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      isObscureChanged = !isObscureChanged;
+                    });
+                  },
+                  child: Icon(
+                    isObscureChanged ? Icons.visibility : Icons.visibility_off,
+                    color: context.appColors.textColor,
+                  ),
+                )
+              : null,
+        ),
       ),
     );
   }

@@ -19,6 +19,6 @@ class SplashCubit extends Cubit<SplashState> with BaseCubit {
   void setContext(BuildContext context) => this.context = context;
 
   Future<void> navigateToPages() async {
-    await navigation.navigateToPageClear(path: NavigationConstants.SAMPLE);
+    await navigation.navigateToPageClear(path: NavigationConstants.SIGNUP);
   }
 }
