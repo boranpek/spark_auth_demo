@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spark_auth_demo/feature/forgot_password/view/forgot_password_view.dart';
 import 'package:spark_auth_demo/feature/login/view/login_view.dart';
 import 'package:spark_auth_demo/feature/signup/view/signup_view.dart';
 import 'package:spark_auth_demo/feature/splash/view/splash_view.dart';
@@ -18,6 +19,8 @@ class NavigationRoute {
         return normalNavigate(const SignupView());
       case NavigationConstants.LOGIN:
         return normalNavigate(const LoginView());
+      case NavigationConstants.FORGOTPASSWORD:
+        return normalNavigate(const ForgotPasswordView());
       default:
         return normalNavigate(const SizedBox());
     }
