@@ -26,25 +26,7 @@ class ForgotPasswordCubit extends Cubit<ForgotPasswordState> with BaseCubit {
 
   Future resetPassword() async {
     if (state.isButtonActive) {
-      showDialog(
-        context: context!,
-        builder: (ctx) => AlertDialog(
-          title: Text(
-            'Please wait...',
-            textAlign: TextAlign.center,
-            style: context!.textTheme.headline2,
-          ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Center(
-                child: CircularProgressIndicator(
-                    color: context!.appColors.primaryColor),
-              ),
-            ],
-          ),
-        ),
-      );
+      context!.loadingDialog();
       try {
         await FirebaseAuth.instance
             .sendPasswordResetEmail(email: emailController.text);
@@ -54,56 +36,10 @@ class ForgotPasswordCubit extends Cubit<ForgotPasswordState> with BaseCubit {
         navigateToLogin();
       } on FirebaseAuthException {
         Navigator.pop(context!);
-        showDialog(
-          context: context!,
-          builder: (ctx) => AlertDialog(
-            title: Text(
-              'Wrong email',
-              textAlign: TextAlign.center,
-              style: context!.textTheme.headline2,
-            ),
-            actions: <Widget>[
-              Center(
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.of(ctx).pop();
-                  },
-                  child: Text(
-                    'OK',
-                    textAlign: TextAlign.center,
-                    style: context!.textTheme.bodyText1,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
+        context!.customShowDialog(title: 'Wrong email');
       }
     } else {
-      showDialog(
-          context: context!,
-          builder: (ctx) => AlertDialog(
-            title: Text(
-              'Please enter your email',
-              textAlign: TextAlign.center,
-              style: context!.textTheme.headline2,
-            ),
-            actions: <Widget>[
-              Center(
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.of(ctx).pop();
-                  },
-                  child: Text(
-                    'OK',
-                    textAlign: TextAlign.center,
-                    style: context!.textTheme.bodyText1,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
+      context!.customShowDialog(title: 'Please enter your email');
     }
   }
 

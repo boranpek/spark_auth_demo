@@ -29,3 +29,53 @@ extension SnackBarExtension on BuildContext {
         ),
       );
 }
+
+extension DialogExtension on BuildContext {
+  dynamic customShowDialog({String? title}) => showDialog(
+        context: this,
+        builder: (ctx) => AlertDialog(
+          title: Text(
+            title ?? 'Something is wrong',
+            textAlign: TextAlign.center,
+            style: textTheme.headline2,
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: const [],
+          ),
+          actions: <Widget>[
+            Center(
+              child: TextButton(
+                onPressed: () {
+                  Navigator.of(ctx).pop();
+                },
+                child: Text(
+                  'OK',
+                  textAlign: TextAlign.center,
+                  style: textTheme.bodyText1,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+
+  dynamic loadingDialog() => showDialog(
+        context: this,
+        builder: (ctx) => AlertDialog(
+          title: Text(
+            'Please wait...',
+            textAlign: TextAlign.center,
+            style: textTheme.headline2,
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Center(
+                child: CircularProgressIndicator(color: appColors.primaryColor),
+              ),
+            ],
+          ),
+        ),
+      );
+}
