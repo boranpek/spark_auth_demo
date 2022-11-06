@@ -30,6 +30,7 @@ class _DropDownState extends State<DropDown> {
             Expanded(
               child: Text(
                 widget.title,
+                style: context.textTheme.bodyText1,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
@@ -53,6 +54,7 @@ class _DropDownState extends State<DropDown> {
         icon: const Icon(
           Icons.expand_more,
         ),
+        style: context.textTheme.bodyText1,
         iconSize: 20,
         iconEnabledColor: context.appColors.textColor,
         iconDisabledColor: context.appColors.textColor,
