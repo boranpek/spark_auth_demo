@@ -34,6 +34,9 @@ class LoginView extends StatelessWidget {
                   height: 20,
                 ),
                 CustomTextField(
+                  showError: (isError) {
+                    cubit.isEmailChecked(isError);
+                  },
                   title: cubit.hintTexts[0],
                   controller: cubit.emailController,
                 ),
@@ -41,6 +44,9 @@ class LoginView extends StatelessWidget {
                   height: 20,
                 ),
                 CustomTextField(
+                  showError: (isError) {
+                    cubit.isPasswordChecked(isError);
+                  },
                   title: cubit.hintTexts[1],
                   controller: cubit.passwordController,
                   isObscure: true,
