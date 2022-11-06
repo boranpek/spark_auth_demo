@@ -8,6 +8,9 @@ extension ContextExtension on BuildContext {
 extension MediaQueryExtension on BuildContext {
   double get height => mediaQuery.size.height;
   double get width => mediaQuery.size.width;
+  double dynamicHeight(double multiplier) {
+    return height * (multiplier / 812);
+  }
 }
 
 extension ThemeExtension on BuildContext {

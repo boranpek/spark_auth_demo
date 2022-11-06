@@ -19,6 +19,7 @@ class ForgotPasswordView extends StatelessWidget {
         cubit.init();
       },
       onPageBuilder: (ForgotPasswordCubit cubit) => Scaffold(
+        resizeToAvoidBottomInset: false,
         body: SafeArea(
             child: Padding(
           padding: const EdgeInsets.all(28),
