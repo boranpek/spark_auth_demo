@@ -74,10 +74,13 @@ class SignupView extends StatelessWidget {
                       AppTexts.alreadyHaveProfile,
                       style: context.textTheme.bodyText2,
                     ),
-                    Text(
-                      AppTexts.loginButton,
-                      style: context.textTheme.bodyText2!
-                          .copyWith(color: context.appColors.primaryColor),
+                    GestureDetector(
+                      onTap: cubit.navigateToLogin,
+                      child: Text(
+                        AppTexts.loginButton,
+                        style: context.textTheme.bodyText2!
+                            .copyWith(color: context.appColors.primaryColor),
+                      ),
                     ),
                   ],
                 ),

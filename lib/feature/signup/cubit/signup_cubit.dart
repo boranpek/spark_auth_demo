@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:spark_auth_demo/core/base/cubit/base_cubit.dart';
 import 'package:spark_auth_demo/core/constants/texts/texts.dart';
 
+import '../../../core/constants/navigation/navigation_constants.dart';
+
 part 'signup_state.dart';
 
 class SignupCubit extends Cubit<SignupState> with BaseCubit {
@@ -57,5 +59,9 @@ class SignupCubit extends Cubit<SignupState> with BaseCubit {
 
   tooglePrivacyPolicy() {
     emit(state.copyWith(isPrivacyPolicyChecked: !state.isPrivacyPolicyChecked));
+  }
+
+  Future<void> navigateToLogin() async {
+    await navigation.navigateToPageClear(path: NavigationConstants.LOGIN);
   }
 }
