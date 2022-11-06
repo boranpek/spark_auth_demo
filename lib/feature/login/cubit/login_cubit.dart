@@ -48,25 +48,7 @@ class LoginCubit extends Cubit<LoginState> with BaseCubit {
 
   Future login() async {
     if (state.isEmailChecked && state.isPasswordChecked) {
-      showDialog(
-        context: context!,
-        builder: (ctx) => AlertDialog(
-          title: Text(
-            'Please wait...',
-            textAlign: TextAlign.center,
-            style: context!.textTheme.headline2,
-          ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Center(
-                child: CircularProgressIndicator(
-                    color: context!.appColors.primaryColor),
-              ),
-            ],
-          ),
-        ),
-      );
+      context!.loadingDialog();
       try {
         await FirebaseAuth.instance.signInWithEmailAndPassword(
             email: emailController.text, password: passwordController.text);
@@ -75,56 +57,10 @@ class LoginCubit extends Cubit<LoginState> with BaseCubit {
         context!.showSnackBar('${appStateManager.user.name} logged in');
       } on FirebaseAuthException {
         Navigator.pop(context!);
-        showDialog(
-          context: context!,
-          builder: (ctx) => AlertDialog(
-            title: Text(
-              'Password or Email is wrong',
-              textAlign: TextAlign.center,
-              style: context!.textTheme.headline2,
-            ),
-            actions: <Widget>[
-              Center(
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.of(ctx).pop();
-                  },
-                  child: Text(
-                    'OK',
-                    textAlign: TextAlign.center,
-                    style: context!.textTheme.bodyText1,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
+        context!.customShowDialog(title: 'Password or Email is wrong');
       }
     } else {
-      showDialog(
-        context: context!,
-        builder: (ctx) => AlertDialog(
-          title: Text(
-            'Please fill the fields',
-            textAlign: TextAlign.center,
-            style: context!.textTheme.headline2,
-          ),
-          actions: <Widget>[
-            Center(
-              child: TextButton(
-                onPressed: () {
-                  Navigator.of(ctx).pop();
-                },
-                child: Text(
-                  'OK',
-                  textAlign: TextAlign.center,
-                  style: context!.textTheme.bodyText1,
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
+      context!.customShowDialog(title: 'Please fill the fields');
     }
   }
 

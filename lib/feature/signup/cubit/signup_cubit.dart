@@ -95,135 +95,26 @@ class SignupCubit extends Cubit<SignupState> with BaseCubit {
     if (state.isConfirmPasswordChecked &&
         state.isEmailChecked &&
         state.isNameChecked &&
-        state.isPasswordChecked &&
-        state.isPrivacyPolicyChecked) {
-      showDialog(
-        context: context!,
-        builder: (ctx) => AlertDialog(
-          title: Text(
-            'Please wait...',
-            textAlign: TextAlign.center,
-            style: context!.textTheme.headline2,
-          ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Center(
-                child: CircularProgressIndicator(
-                    color: context!.appColors.primaryColor),
-              ),
-            ],
-          ),
-        ),
-      );
-      try {
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-            email: emailController.text, password: passwordController.text);
-        await createUser();
-        Navigator.pop(context!);
-        context!.showSnackBar('User is registered');
-      } on FirebaseAuthException {
-        Navigator.pop(context!);
-        showDialog(
-          context: context!,
-          builder: (ctx) => AlertDialog(
-            title: Text(
-              'Something is wrong',
-              textAlign: TextAlign.center,
-              style: context!.textTheme.headline2,
-            ),
-            actions: <Widget>[
-              Center(
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.of(ctx).pop();
-                  },
-                  child: Text(
-                    'OK',
-                    textAlign: TextAlign.center,
-                    style: context!.textTheme.bodyText1,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
+        state.isPasswordChecked) {
+      if (confirmPasswordController.text != passwordController.text) {
+        context!.customShowDialog(title: 'Passwords are not matched');
+      } else if (!state.isPrivacyPolicyChecked) {
+        context!.customShowDialog(title: 'Please check privacy policy');
+      } else {
+        context!.loadingDialog();
+        try {
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+              email: emailController.text, password: passwordController.text);
+          await createUser();
+          Navigator.pop(context!);
+          context!.showSnackBar('User is registered');
+        } on FirebaseAuthException {
+          Navigator.pop(context!);
+          context!.customShowDialog();
+        }
       }
-    } else if (confirmPasswordController.text != passwordController.text) {
-      showDialog(
-        context: context!,
-        builder: (ctx) => AlertDialog(
-          title: Text(
-            'Passwords are not matched',
-            textAlign: TextAlign.center,
-            style: context!.textTheme.headline2,
-          ),
-          actions: <Widget>[
-            Center(
-              child: TextButton(
-                onPressed: () {
-                  Navigator.of(ctx).pop();
-                },
-                child: Text(
-                  'OK',
-                  textAlign: TextAlign.center,
-                  style: context!.textTheme.bodyText1,
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
-    } else if (!state.isPrivacyPolicyChecked) {
-      showDialog(
-        context: context!,
-        builder: (ctx) => AlertDialog(
-          title: Text(
-            'Please check privacy policy',
-            textAlign: TextAlign.center,
-            style: context!.textTheme.headline2,
-          ),
-          actions: <Widget>[
-            Center(
-              child: TextButton(
-                onPressed: () {
-                  Navigator.of(ctx).pop();
-                },
-                child: Text(
-                  'OK',
-                  textAlign: TextAlign.center,
-                  style: context!.textTheme.bodyText1,
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
     } else {
-      showDialog(
-        context: context!,
-        builder: (ctx) => AlertDialog(
-          title: Text(
-            'Please fill the required fields',
-            textAlign: TextAlign.center,
-            style: context!.textTheme.headline2,
-          ),
-          actions: <Widget>[
-            Center(
-              child: TextButton(
-                onPressed: () {
-                  Navigator.of(ctx).pop();
-                },
-                child: Text(
-                  'OK',
-                  textAlign: TextAlign.center,
-                  style: context!.textTheme.bodyText1,
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
+      context!.customShowDialog(title: 'Please fill the required fields');
     }
   }
 
