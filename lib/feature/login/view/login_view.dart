@@ -30,8 +30,8 @@ class LoginView extends StatelessWidget {
                   AppTexts.loginScreenHeader,
                   style: context.textTheme.headline1,
                 ),
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: context.dynamicHeight(20),
                 ),
                 CustomTextField(
                   showError: (isError) {
@@ -40,8 +40,8 @@ class LoginView extends StatelessWidget {
                   title: cubit.hintTexts[0],
                   controller: cubit.emailController,
                 ),
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: context.dynamicHeight(20),
                 ),
                 CustomTextField(
                   showError: (isError) {
@@ -51,16 +51,16 @@ class LoginView extends StatelessWidget {
                   controller: cubit.passwordController,
                   isObscure: true,
                 ),
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: context.dynamicHeight(20),
                 ),
                 ExtendableButton(
                   text: AppTexts.letsGoButton,
                   buttonColor: context.appColors.primaryButtonColor,
                   onPress: cubit.login,
                 ),
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: context.dynamicHeight(20),
                 ),
                 GestureDetector(
                   onTap: cubit.navigateToForgotPassword,
@@ -69,15 +69,15 @@ class LoginView extends StatelessWidget {
                     style: context.textTheme.bodyText2,
                   ),
                 ),
-                const SizedBox(
-                  height: 100,
+                SizedBox(
+                  height: context.dynamicHeight(100),
                 ),
                 Text(
                   AppTexts.dontHaveAccount,
                   style: context.textTheme.headline2,
                 ),
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: context.dynamicHeight(20),
                 ),
                 ExtendableButton(
                   text: AppTexts.registerButton,
