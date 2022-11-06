@@ -43,6 +43,7 @@ class LoginView extends StatelessWidget {
                 CustomTextField(
                   title: cubit.hintTexts[1],
                   controller: cubit.passwordController,
+                  isObscure: true,
                 ),
                 const SizedBox(
                   height: 20,
@@ -55,9 +56,12 @@ class LoginView extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                Text(
-                  AppTexts.forgotYourPassword,
-                  style: context.textTheme.bodyText2,
+                GestureDetector(
+                  onTap: cubit.navigateToForgotPassword,
+                  child: Text(
+                    AppTexts.forgotYourPassword,
+                    style: context.textTheme.bodyText2,
+                  ),
                 ),
                 const SizedBox(
                   height: 100,
