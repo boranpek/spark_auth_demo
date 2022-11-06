@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spark_auth_demo/core/constants/texts/texts.dart';
 import 'package:spark_auth_demo/core/constants/ui/ui_constants.dart';
 import 'package:spark_auth_demo/core/extensions/context_extensions.dart';
 import 'package:spark_auth_demo/core/extensions/string_extensions.dart';
@@ -47,8 +48,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
   }
 
   verifyName() {
-     if (widget.controller!.text.isEmpty) {
-      errorText = 'Please enter your name';
+    if (widget.controller!.text.isEmpty) {
+      errorText = AppTexts.pleaseEnterYourEmail;
       setState(() {
         showError = true;
       });
@@ -58,13 +59,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
       });
     }
   }
+
   verifyEmail() {
     if (widget.controller!.text.isValidEmail ?? false) {
       setState(() {
         showError = false;
       });
     } else {
-      errorText = 'Invalid email';
+      errorText = AppTexts.invalidEmail;
       setState(() {
         showError = true;
       });
@@ -73,7 +75,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
   verifyPassword() {
     if (widget.controller!.text.length < 8) {
-      errorText = 'Password lenght should be min 8 character';
+      errorText = AppTexts.passLengthMin;
       setState(() {
         showError = true;
       });
