@@ -5,7 +5,7 @@ import 'package:spark_auth_demo/core/constants/texts/texts.dart';
 import 'package:spark_auth_demo/core/extensions/context_extensions.dart';
 
 import '../../../core/base/view/base_view.dart';
-import '../../cubit/forgot_password_cubit.dart';
+import '../cubit/forgot_password_cubit.dart';
 
 class ForgotPasswordView extends StatelessWidget {
   const ForgotPasswordView({Key? key}) : super(key: key);
@@ -49,7 +49,7 @@ class ForgotPasswordView extends StatelessWidget {
               ExtendableButton(
                 text: AppTexts.continueButton,
                 buttonColor: context.appColors.primaryButtonColor,
-                onPress: () {},
+                onPress: cubit.resetPassword,
               ),
               const SizedBox(
                 height: 25,
