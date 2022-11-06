@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:spark_auth_demo/core/init/navigation/navigation_routes.dart';
 import 'package:spark_auth_demo/core/init/theme/app_theme_manager.dart';
@@ -26,4 +27,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-Future<void> init() async {}
+Future<void> init() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+}

@@ -1,6 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:spark_auth_demo/core/extensions/context_extensions.dart';
+import 'package:spark_auth_demo/feature/signup/cubit/signup_cubit.dart';
 
 import '../../constants/ui/ui_constants.dart';
 
@@ -9,9 +10,13 @@ class DropDown extends StatefulWidget {
     Key? key,
     required this.items,
     required this.title,
+    required this.cubit,
+    this.isGender = false,
   }) : super(key: key);
   final List<String> items;
   final String title;
+  final SignupCubit cubit;
+  final bool isGender;
 
   @override
   State<DropDown> createState() => _DropDownState();
@@ -47,8 +52,11 @@ class _DropDownState extends State<DropDown> {
             .toList(),
         value: selectedValue,
         onChanged: (value) {
+          widget.isGender
+              ? widget.cubit.selectGender(gender: value as String)
+              : widget.cubit.selectBirth(birth: value as String);
           setState(() {
-            selectedValue = value as String;
+            selectedValue = value;
           });
         },
         icon: const Icon(

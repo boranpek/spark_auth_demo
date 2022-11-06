@@ -51,7 +51,7 @@ class LoginView extends StatelessWidget {
                 ExtendableButton(
                   text: AppTexts.letsGoButton,
                   buttonColor: context.appColors.primaryButtonColor,
-                  onPress: () {},
+                  onPress: cubit.login,
                 ),
                 const SizedBox(
                   height: 20,

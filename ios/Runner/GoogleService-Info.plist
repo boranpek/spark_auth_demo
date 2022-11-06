@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>597947437389-t909qto2a3ebnlavp64h9d5jupaa83lh.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.597947437389-t909qto2a3ebnlavp64h9d5jupaa83lh</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA7VWkfW8PwziazyahY_93JNveSYaAxtN8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>597947437389</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.sparkAuth</string>
+	<key>PROJECT_ID</key>
+	<string>spark-auth-demo</string>
+	<key>STORAGE_BUCKET</key>
+	<string>spark-auth-demo.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:597947437389:ios:22d015a6b39c6987d9a704</string>
+</dict>
+</plist>

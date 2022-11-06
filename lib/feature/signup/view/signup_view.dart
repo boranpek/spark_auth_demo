@@ -45,6 +45,8 @@ class SignupView extends StatelessWidget {
                           ? DropDown(
                               items: cubit.dropdownItems[index - 1],
                               title: cubit.hintTexts[index],
+                              cubit: cubit,
+                              isGender: index == 2,
                             )
                           : index == 6
                               ? PrivacyPolicy(
@@ -63,7 +65,7 @@ class SignupView extends StatelessWidget {
                 ExtendableButton(
                   text: AppTexts.saveButton,
                   buttonColor: context.appColors.primaryButtonColor,
-                  onPress: () {},
+                  onPress: cubit.createUser,
                 ),
                 const SizedBox(
                   height: 20,
