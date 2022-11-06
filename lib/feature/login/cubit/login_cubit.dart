@@ -28,4 +28,8 @@ class LoginCubit extends Cubit<LoginState> with BaseCubit {
   Future<void> navigateToSignup() async {
     await navigation.navigateToPageClear(path: NavigationConstants.SIGNUP);
   }
+
+  Future<void> navigateToForgotPassword() async {
+    await navigation.navigateToPageClear(path: NavigationConstants.FORGOTPASSWORD);
+  }
 }
