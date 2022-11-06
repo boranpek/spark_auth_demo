@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:spark_auth_demo/core/base/cubit/base_cubit.dart';
+import 'package:spark_auth_demo/core/constants/texts/texts.dart';
 import 'package:spark_auth_demo/core/extensions/context_extensions.dart';
 
 import '../../../core/constants/navigation/navigation_constants.dart';
@@ -31,15 +32,15 @@ class ForgotPasswordCubit extends Cubit<ForgotPasswordState> with BaseCubit {
         await FirebaseAuth.instance
             .sendPasswordResetEmail(email: emailController.text);
         Navigator.pop(context!);
-        context!.showSnackBar('Email is sent');
+        context!.showSnackBar(AppTexts.emailIsSent);
         await Future.delayed(const Duration(seconds: 2));
         navigateToLogin();
       } on FirebaseAuthException {
         Navigator.pop(context!);
-        context!.customShowDialog(title: 'Wrong email');
+        context!.customShowDialog(title: AppTexts.errorWrongEmail);
       }
     } else {
-      context!.customShowDialog(title: 'Please enter your email');
+      context!.customShowDialog(title: AppTexts.pleaseEnterYourEmail);
     }
   }
 

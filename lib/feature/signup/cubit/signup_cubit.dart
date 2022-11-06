@@ -97,9 +97,9 @@ class SignupCubit extends Cubit<SignupState> with BaseCubit {
         state.isNameChecked &&
         state.isPasswordChecked) {
       if (confirmPasswordController.text != passwordController.text) {
-        context!.customShowDialog(title: 'Passwords are not matched');
+        context!.customShowDialog(title: AppTexts.passwordsAreNotMatched);
       } else if (!state.isPrivacyPolicyChecked) {
-        context!.customShowDialog(title: 'Please check privacy policy');
+        context!.customShowDialog(title: AppTexts.errorPleaseCheckPrivacy);
       } else {
         context!.loadingDialog();
         try {
@@ -107,14 +107,14 @@ class SignupCubit extends Cubit<SignupState> with BaseCubit {
               email: emailController.text, password: passwordController.text);
           await createUser();
           Navigator.pop(context!);
-          context!.showSnackBar('User is registered');
+          context!.showSnackBar(AppTexts.userRegistered);
         } on FirebaseAuthException {
           Navigator.pop(context!);
           context!.customShowDialog();
         }
       }
     } else {
-      context!.customShowDialog(title: 'Please fill the required fields');
+      context!.customShowDialog(title: AppTexts.fillRequiredFields);
     }
   }
 

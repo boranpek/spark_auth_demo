@@ -21,4 +21,19 @@ class AppTexts {
   static const dontHaveAccount = "Don't have an account? Register now!";
   static const fotgotPassDescription =
       "Enter the email address associated with your account and we'll email you a link to reset your password.";
+  static const errorWrongEmailOrPassword = 'Wrong email or password';
+  static const pleaseWait = 'Please wait...';
+  static const errorPleaseFillAll = 'Please fill all fields';
+  static const errorPleaseCheckPrivacy = 'Please check privacy policy';
+  static const pleaseEnterYourEmail = 'Please enter your email';
+  static const errorWrongEmail = 'Wrong email';
+  static const emailIsSent = 'Email is sent';
+  static const userLoggedIn = 'logged in';
+  static const userRegistered = 'User is registered';
+  static const fillRequiredFields = 'Please fill the required fields';
+  static const passwordsAreNotMatched = 'Passwords are not matched';
+  static const pleaseEnterYourName = 'Please enter your name';
+  static const invalidEmail = 'Invalid email';
+  static const passLengthMin = 'Password lenght should be min 8 character';
+  
 }

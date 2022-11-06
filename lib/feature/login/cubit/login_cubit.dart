@@ -54,13 +54,14 @@ class LoginCubit extends Cubit<LoginState> with BaseCubit {
             email: emailController.text, password: passwordController.text);
         await loggedUser(readUser());
         Navigator.pop(context!);
-        context!.showSnackBar('${appStateManager.user.name} logged in');
+        context!.showSnackBar(
+            '${appStateManager.user.name} ${AppTexts.userLoggedIn}');
       } on FirebaseAuthException {
         Navigator.pop(context!);
-        context!.customShowDialog(title: 'Password or Email is wrong');
+        context!.customShowDialog(title: AppTexts.errorWrongEmailOrPassword);
       }
     } else {
-      context!.customShowDialog(title: 'Please fill the fields');
+      context!.customShowDialog(title: AppTexts.errorPleaseFillAll);
     }
   }
 
