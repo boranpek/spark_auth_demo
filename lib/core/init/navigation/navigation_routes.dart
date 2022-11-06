@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spark_auth_demo/feature/login/view/login_view.dart';
 import 'package:spark_auth_demo/feature/signup/view/signup_view.dart';
 import 'package:spark_auth_demo/feature/splash/view/splash_view.dart';
 import '../../constants/navigation/navigation_constants.dart';
@@ -15,6 +16,8 @@ class NavigationRoute {
         return normalNavigate(const SplashView());
       case NavigationConstants.SIGNUP:
         return normalNavigate(const SignupView());
+      case NavigationConstants.LOGIN:
+        return normalNavigate(const LoginView());
       default:
         return normalNavigate(const SizedBox());
     }
