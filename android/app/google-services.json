@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "597947437389",
+    "project_id": "spark-auth-demo",
+    "storage_bucket": "spark-auth-demo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:597947437389:android:ac77f0e1f3d0a0c9d9a704",
+        "android_client_info": {
+          "package_name": "com.example.spark_auth_demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "597947437389-ci68jurun1prjse74io3eu2v75c7n11j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKwLODJNhoxZ-_ZIAmYNzEJFjK8dQ-n1c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "597947437389-ci68jurun1prjse74io3eu2v75c7n11j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
