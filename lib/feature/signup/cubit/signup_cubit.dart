@@ -1,9 +1,12 @@
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:spark_auth_demo/core/base/cubit/base_cubit.dart';
 import 'package:spark_auth_demo/core/constants/texts/texts.dart';
+import 'package:spark_auth_demo/feature/auth/model/user_request_model.dart';
 
 import '../../../core/constants/navigation/navigation_constants.dart';
 
@@ -63,5 +66,37 @@ class SignupCubit extends Cubit<SignupState> with BaseCubit {
 
   Future<void> navigateToLogin() async {
     await navigation.navigateToPageClear(path: NavigationConstants.LOGIN);
+  }
+
+  Future createUser() async {
+    final docUser = FirebaseFirestore.instance.collection('users').doc();
+    final user = UserRequestModel(
+      id: docUser.id,
+      name: nameController.text,
+      birthYear: state.birth,
+      email: emailController.text,
+      gender: state.gender,
+      password: passwordController.text,
+    );
+    final json = user.toJson();
+    await docUser.set(json);
+    signUp();
+  }
+
+  selectGender({required String gender}) {
+    emit(state.copyWith(gender: gender));
+  }
+
+  selectBirth({required String birth}) {
+    emit(state.copyWith(birth: birth));
+  }
+
+  Future signUp() async {
+    try {
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text, password: passwordController.text);
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
   }
 }
