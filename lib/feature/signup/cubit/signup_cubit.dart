@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'package:spark_auth_demo/core/base/cubit/base_cubit.dart';
 import 'package:spark_auth_demo/core/constants/texts/texts.dart';
+import 'package:spark_auth_demo/core/extensions/context_extensions.dart';
 import 'package:spark_auth_demo/feature/auth/model/user_request_model.dart';
 
 import '../../../core/constants/navigation/navigation_constants.dart';
@@ -80,7 +81,6 @@ class SignupCubit extends Cubit<SignupState> with BaseCubit {
     );
     final json = user.toJson();
     await docUser.set(json);
-    signUp();
   }
 
   selectGender({required String gender}) {
@@ -92,11 +92,154 @@ class SignupCubit extends Cubit<SignupState> with BaseCubit {
   }
 
   Future signUp() async {
-    try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: emailController.text, password: passwordController.text);
-    } on FirebaseAuthException catch (e) {
-      print(e);
+    if (state.isConfirmPasswordChecked &&
+        state.isEmailChecked &&
+        state.isNameChecked &&
+        state.isPasswordChecked &&
+        state.isPrivacyPolicyChecked) {
+      showDialog(
+        context: context!,
+        builder: (ctx) => AlertDialog(
+          title: Text(
+            'Please wait...',
+            textAlign: TextAlign.center,
+            style: context!.textTheme.headline2,
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Center(
+                child: CircularProgressIndicator(
+                    color: context!.appColors.primaryColor),
+              ),
+            ],
+          ),
+        ),
+      );
+      try {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email: emailController.text, password: passwordController.text);
+        await createUser();
+        Navigator.pop(context!);
+        context!.showSnackBar('User is registered');
+      } on FirebaseAuthException {
+        Navigator.pop(context!);
+        showDialog(
+          context: context!,
+          builder: (ctx) => AlertDialog(
+            title: Text(
+              'Something is wrong',
+              textAlign: TextAlign.center,
+              style: context!.textTheme.headline2,
+            ),
+            actions: <Widget>[
+              Center(
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.of(ctx).pop();
+                  },
+                  child: Text(
+                    'OK',
+                    textAlign: TextAlign.center,
+                    style: context!.textTheme.bodyText1,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      }
+    } else if (confirmPasswordController.text != passwordController.text) {
+      showDialog(
+        context: context!,
+        builder: (ctx) => AlertDialog(
+          title: Text(
+            'Passwords are not matched',
+            textAlign: TextAlign.center,
+            style: context!.textTheme.headline2,
+          ),
+          actions: <Widget>[
+            Center(
+              child: TextButton(
+                onPressed: () {
+                  Navigator.of(ctx).pop();
+                },
+                child: Text(
+                  'OK',
+                  textAlign: TextAlign.center,
+                  style: context!.textTheme.bodyText1,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    } else if (!state.isPrivacyPolicyChecked) {
+      showDialog(
+        context: context!,
+        builder: (ctx) => AlertDialog(
+          title: Text(
+            'Please check privacy policy',
+            textAlign: TextAlign.center,
+            style: context!.textTheme.headline2,
+          ),
+          actions: <Widget>[
+            Center(
+              child: TextButton(
+                onPressed: () {
+                  Navigator.of(ctx).pop();
+                },
+                child: Text(
+                  'OK',
+                  textAlign: TextAlign.center,
+                  style: context!.textTheme.bodyText1,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    } else {
+      showDialog(
+        context: context!,
+        builder: (ctx) => AlertDialog(
+          title: Text(
+            'Please fill the required fields',
+            textAlign: TextAlign.center,
+            style: context!.textTheme.headline2,
+          ),
+          actions: <Widget>[
+            Center(
+              child: TextButton(
+                onPressed: () {
+                  Navigator.of(ctx).pop();
+                },
+                child: Text(
+                  'OK',
+                  textAlign: TextAlign.center,
+                  style: context!.textTheme.bodyText1,
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
     }
+  }
+
+  isEmailChecked(bool isError) {
+    emit(state.copyWith(isEmailChecked: !isError));
+  }
+
+  isPasswordChecked(bool isError) {
+    emit(state.copyWith(isPasswordChecked: !isError));
+  }
+
+  isNameChecked(bool isError) {
+    emit(state.copyWith(isNameChecked: !isError));
+  }
+
+  isConfirmPasswordChecked(bool isError) {
+    emit(state.copyWith(isConfirmPasswordChecked: !isError));
   }
 }

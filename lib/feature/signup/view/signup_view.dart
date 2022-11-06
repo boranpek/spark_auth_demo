@@ -53,6 +53,18 @@ class SignupView extends StatelessWidget {
                                   cubit: cubit,
                                 )
                               : CustomTextField(
+                                  showError: (isError) {
+                                    index == 0
+                                        ? cubit.isNameChecked(isError)
+                                        : index == 3
+                                            ? cubit.isEmailChecked(isError)
+                                            : index == 4
+                                                ? cubit
+                                                    .isPasswordChecked(isError)
+                                                : cubit
+                                                    .isConfirmPasswordChecked(
+                                                        isError);
+                                  },
                                   title: cubit.hintTexts[index],
                                   isCapitalized: index == 0,
                                   isObscure: index > 3,
@@ -65,7 +77,7 @@ class SignupView extends StatelessWidget {
                 ExtendableButton(
                   text: AppTexts.saveButton,
                   buttonColor: context.appColors.primaryButtonColor,
-                  onPress: cubit.createUser,
+                  onPress: cubit.signUp,
                 ),
                 const SizedBox(
                   height: 20,
