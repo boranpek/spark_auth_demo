@@ -40,6 +40,10 @@ class ForgotPasswordView extends StatelessWidget {
                 height: 30,
               ),
               CustomTextField(
+                showError: (isError) {
+                  cubit.isButtonActive(isError);
+                  print(isError);
+                },
                 title: AppTexts.emailHintText,
                 controller: cubit.emailController,
               ),

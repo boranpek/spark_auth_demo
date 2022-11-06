@@ -25,7 +25,7 @@ extension SnackBarExtension on BuildContext {
   dynamic showSnackBar(String text) => ScaffoldMessenger.of(this).showSnackBar(
         SnackBar(
           content: Text(text, style: textTheme.bodyText1),
-          backgroundColor: Colors.teal,
+          backgroundColor: appColors.white,
         ),
       );
 }

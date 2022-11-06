@@ -1,8 +1,17 @@
 part of 'forgot_password_cubit.dart';
 
 class ForgotPasswordState extends Equatable {
-  const ForgotPasswordState();
+  final bool isButtonActive;
+  const ForgotPasswordState({this.isButtonActive = false});
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [isButtonActive];
+
+  ForgotPasswordState copyWith({
+    bool? isButtonActive,
+  }) {
+    return ForgotPasswordState(
+      isButtonActive: isButtonActive ?? this.isButtonActive,
+    );
+  }
 }
