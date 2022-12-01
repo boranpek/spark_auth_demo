@@ -13,9 +13,9 @@ class AppThemeManager extends AppTheme {
 
   @override
   ThemeData get lightTheme =>
-      ThemeData(textTheme: TextThemeManager.instance.textTheme());
+      ThemeData(textTheme: TextThemeManager.instance.textTheme(), brightness: Brightness.light);
 
   @override
   ThemeData get darkTheme =>
-      ThemeData(textTheme: TextThemeManager.instance.textTheme(isDark: true));
+      ThemeData(textTheme: TextThemeManager.instance.textTheme(isDark: true), brightness: Brightness.dark);
 }
